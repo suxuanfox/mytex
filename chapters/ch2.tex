@@ -523,4 +523,13 @@ $(x,I_d,0)$.不妨设存在常数$C$使得任意$n\geq 1,x\in \mathbb{R}^d$,
     \end{aligned}
     \notag
 \end{equation}
+以及当$\rho_n(x)I_{B(0,n)}(x)=x$.从而对任意$\mu\in \mathscr{P}_2$以及以$\mu$为分布的随机变量$X$,都有
+\begin{equation}
+    \begin{aligned}
+        W_2(\mu\circ\rho_n^{-1},\mu)^2&\leq \mathbb{E}[\abs{\rho_n(X)-X}^2]\\
+        &=\mathbb{E}[\abs{\rho_n(X)-X}^2I_{\{\abs{X}\geq n\}}]\\
+        &\leq (C+1)^2 \mathbb{E}[\abs{X}^2I_{\{\abs{X}\geq n\}}],
+    \end{aligned}
+\end{equation}
+由于$X$二阶矩有限,所以当$n\to \infty$,$W_2(\mu\circ\rho_n^{-1},\mu)\to 0$
 \end{proof}
