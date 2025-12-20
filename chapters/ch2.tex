@@ -449,6 +449,36 @@ $d$维方阵$A$,$\langle \partial_x \partial_\mu f(\mu)(x),A\rangle=\partial_x \
     \]
 \end{theorem}
 
+在实变函数的情形下,一个函数与一个性质充分好的函数做卷积后会继承部分好的性质,对于测度变量的函数也可以有类似操作,但这里不是通过卷积来平滑,而是通过
+拉回映射来实现,具体陈述如下.
+\begin{lemma}
+    设$f:\mathscr{P}_2\to \mathbb{R}$是$C^2$正则的,$\rho:\mathbb{R}^d\to \mathbb{R}^d$为光滑紧支映射.则函数
+\begin{equation}
+    \begin{aligned}
+        f^*\rho:\mathscr{P}_2&\to \mathbb{R}\\
+        \mu&\mapsto f(\mu\circ \rho)
+    \end{aligned}
+\end{equation}
+是完全$C^2$正则的,且$f^*\rho$及其一阶和二阶导数都是有界和一致连续的.
+\end{lemma}
+\begin{proof}[证明梗概]
+    首先$f^*\rho$的提升为$\widetilde{f^*\rho}(X)=\td{f}(\rho\circ X),X\in L^2(\Omega;\mathbb{R}^d)$,这是因为若$\mathscr{L}(X)$,则$\mathscr{L}(\rho\circ X)=\mu\circ\rho^{-1}$.
+    考虑$\mathscr{L}(X)=\mu\in \mathscr{P}_2$,
+    \begin{equation}
+        \begin{aligned}
+            &\widetilde{f^*\rho}(X+Y)-\widetilde{f^*\rho}(X)\\
+            &=\td{f}(\rho\circ (X+Y))-\td{f}(\rho\circ X)\\
+            &=\mathbb{E}[D\td{f}(\rho\circ X)\cdot (\rho\circ(X+Y)-\rho\circ X)]+o(\nm[L^2]{\rho\circ(X+Y)-\rho\circ X})\\
+            &=\mathbb{E}[D\td{f}(\rho\circ X)\cdot ((D\rho\circ X) Y+o(\abs{Y}))]+o(\nm[L^2]{\rho\circ(X+Y)-\rho\circ X})\\
+            &=\mathbb{E}[D\td{f}(\rho\circ X)\cdot ((D\rho\circ X) Y)]+o(\nm[L^2]{Y})\\
+            &=\mathbb{E}[(D\rho\circ X)D\td{f}(\rho\circ X)\cdot Y]+o(\nm[L^2]{Y}),
+        \end{aligned}
+    \end{equation}
+    其中第四个等号是因为紧支光滑映射的任意阶微分仍是紧支光滑的,特别还是有界的,所以可以把小量统一吸收到$o(\nm[L^2]{Y}$.
+    从而
+\end{proof}
+
+
 \subsection{Ito公式}
 
 对于\ref{itopro}定义的Ito过程和性质足够好的函数$f:\mathscr{P}_2\to \mathbb{R}$,下面的定理给出了其时间边缘分布满足的Ito公式.
@@ -498,20 +528,8 @@ $d$维方阵$A$,$\langle \partial_x \partial_\mu f(\mu)(x),A\rangle=\partial_x \
         \end{aligned}
     \end{equation}
     根据有界性的假设,当$N\to\infty$时,$I_3\to 0$;同样是由于有界性,应用\citep{FG}的定理1以及强大数定律,可得任意$s\in [0.t]$,$W_2(\mu_s^N,\mu_s)$以概率1
-    收敛到0.由$f$的$C^2$正则性,可得当$N\to \infty$,$\mathbb{E}[f(\bar{\mu}^N_s)]\to f(\mu)$.\par
+    收敛到0.由$f$的$C^2$正则性,具体地说是$f$和一阶,二阶导数的连续性,结合有界收敛定理,可得当$N\to \infty$,$\mathbb{E}[f(\bar{\mu}^N_s)]\to f(\mu)$.$I_1,I_2$的收敛性类似.\par
     \textbf{第二步}:\par
-    这一步证明去掉对$f$及其导数的有界性和一致连续性后,公式(3.15)仍然成立.首先我们承认以下引理:
-
-\begin{lemma}
-    设$f:\mathscr{P}_2\to \mathbb{R}$是$C^2$正则的,$\rho:\mathbb{R}^d\to \mathbb{R}^d$为光滑紧支映射.则函数
-\begin{equation}
-    \begin{aligned}
-        f^*\rho:\mathscr{P}_2&\to \mathbb{R}\\
-        \mu&\mapsto f(\mu\circ \rho)
-    \end{aligned}
-\end{equation}
-是完全$C^2$正则的,且$f^*\rho$及其一阶和二阶导数都是有界和一致连续的.
-\end{lemma}
 
 取一列紧支光滑映射$\{\rho_n:\mathbb{R}^d\to \mathbb{R}^d\}$使得在紧集上,$(\rho_n(x),D\rho_n(x),D^2\rho_n(x))$一致收敛到
 $(x,I_d,0)$.不妨设存在常数$C$使得任意$n\geq 1,x\in \mathbb{R}^d$,
