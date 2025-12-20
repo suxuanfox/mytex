@@ -229,9 +229,10 @@ $$
 其中$\mathscr{L}(X)=\mu,\mathscr{L}(X_0)=\mu_0$.\par
 另一方面,为了突出L-可微的内蕴性,我们将定理\ref{3.3}中的$\xi$记为$\partial_\mu f(\mu_0)$,称为$f$在
 $\mu_0$处的Lions导数或L-导数.此时有
-$$
-f(\mu)=f(\mu_0)+\mathbb{E}[\partial_\mu f(\mu_0)(X_0)\cdot (X-X_0)]+o(\nm[L^2]{X-X_0}),
-$$
+\begin{equation}\label{diffor}
+    f(\mu)=f(\mu_0)+\mathbb{E}[\partial_\mu f(\mu_0)(X_0)\cdot (X-X_0)]+o(\nm[L^2]{X-X_0}),
+\end{equation}
+
 其中$\mathscr{L}(X)=\mu,\mathscr{L}(X_0)=\mu_0$.
 \subsection{若干例子}
 \begin{example}[线性函数]\label{eg3.1}
@@ -467,15 +468,28 @@ $d$维方阵$A$,$\langle \partial_x \partial_\mu f(\mu)(x),A\rangle=\partial_x \
     \begin{equation}
         \begin{aligned}
             &\widetilde{f^*\rho}(X+Y)-\widetilde{f^*\rho}(X)\\
-            &=\td{f}(\rho\circ (X+Y))-\td{f}(\rho\circ X)\\
-            &=\mathbb{E}[D\td{f}(\rho\circ X)\cdot (\rho\circ(X+Y)-\rho\circ X)]+o(\nm[L^2]{\rho\circ(X+Y)-\rho\circ X})\\
-            &=\mathbb{E}[D\td{f}(\rho\circ X)\cdot ((D\rho\circ X) Y+o(\abs{Y}))]+o(\nm[L^2]{\rho\circ(X+Y)-\rho\circ X})\\
-            &=\mathbb{E}[D\td{f}(\rho\circ X)\cdot ((D\rho\circ X) Y)]+o(\nm[L^2]{Y})\\
-            &=\mathbb{E}[(D\rho\circ X)D\td{f}(\rho\circ X)\cdot Y]+o(\nm[L^2]{Y}),
+            =&\td{f}(\rho\circ (X+Y))-\td{f}(\rho\circ X)\\
+            =&\mathbb{E}[D\td{f}(\rho\circ X)\cdot (\rho\circ(X+Y)-\rho\circ X)]+o(\nm[L^2]{\rho\circ(X+Y)-\rho\circ X})\\
+            =&\mathbb{E}[D\td{f}(\rho\circ X)\cdot ((D\rho\circ X) Y+o(\abs{Y}))]+o(\nm[L^2]{\rho\circ(X+Y)-\rho\circ X})\\
+            =&\mathbb{E}[D\td{f}(\rho\circ X)\cdot ((D\rho\circ X) Y)]+o(\nm[L^2]{Y})\\
+            =&\mathbb{E}[(D\rho\circ X)D\td{f}(\rho\circ X)\cdot Y]+o(\nm[L^2]{Y}),
         \end{aligned}
     \end{equation}
     其中第四个等号是因为紧支光滑映射的任意阶微分仍是紧支光滑的,特别还是有界的,所以可以把小量统一吸收到$o(\nm[L^2]{Y}$.
     从而
+    \[
+    \partial_{\mu}(f^*\rho )(\mu)(x)=D\rho(x)\partial_{\mu}f(\mu\circ \rho^{-1})(\rho(x))=(\sum_{l=1}^{d}(\partial_{\mu}f(\mu\circ \rho^{-1})(\rho(x)))^{(l)}\frac{\partial \rho_i}{\partial x_l}(x))_{1\leq i \leq d}
+    \]
+    并将其视为一个$d\times 1$的列向量.\par
+    二阶可微性的验证类似,需要注意的是对测度变量的二阶导数计算中使用公式\ref{diffor}会更方便.最后给出$f^*\rho$的导数公式,
+    \begin{equation}
+        \begin{aligned}
+            &\partial_{\mu}^2(f^*\rho )(\mu)(x,y)=D\rho(y)D\rho(x)\partial_{\mu}^2f(\mu\circ \rho^{-1})(\rho(x),\rho(y)),\\
+        &\partial_{x}\partial_{\mu}(f^*\rho )(\mu)(x)=D^2\rho(x)\partial_{\mu}f(\mu\circ \rho^{-1})(\rho(x))+D\rho(x)\partial_{x}\partial_{\mu}f(\mu\circ\rho^{-1})(\rho(x)).
+        \end{aligned}
+    \end{equation}
+        
+
 \end{proof}
 
 
@@ -495,7 +509,7 @@ $d$维方阵$A$,$\langle \partial_x \partial_\mu f(\mu)(x),A\rangle=\partial_x \
 \end{theorem}
 
 \begin{proof}
-    证明主要分为三步.\par
+    证明主要分为两步.\par
     \textbf{第一步}:\par
     设$f$,其一阶导数和其二阶导数都是有界且一致连续的.且过程$(b_s),(\sigma_s)$是有界的.\par
     设$((b^l_s,\sigma^l_s,B^l_s),X_0^l)_(l\in \mathbb{N})$是$((b_s,\sigma_s,B_s),X_0)$的一列独立复制,则
@@ -530,7 +544,7 @@ $d$维方阵$A$,$\langle \partial_x \partial_\mu f(\mu)(x),A\rangle=\partial_x \
     根据有界性的假设,当$N\to\infty$时,$I_3\to 0$;同样是由于有界性,应用\citep{FG}的定理1以及强大数定律,可得任意$s\in [0.t]$,$W_2(\mu_s^N,\mu_s)$以概率1
     收敛到0.由$f$的$C^2$正则性,具体地说是$f$和一阶,二阶导数的连续性,结合有界收敛定理,可得当$N\to \infty$,$\mathbb{E}[f(\bar{\mu}^N_s)]\to f(\mu)$.$I_1,I_2$的收敛性类似.\par
     \textbf{第二步}:\par
-
+    去掉第一步中对$f$及其导数的有界性和一致连续性假设.
 取一列紧支光滑映射$\{\rho_n:\mathbb{R}^d\to \mathbb{R}^d\}$使得在紧集上,$(\rho_n(x),D\rho_n(x),D^2\rho_n(x))$一致收敛到
 $(x,I_d,0)$.不妨设存在常数$C$使得任意$n\geq 1,x\in \mathbb{R}^d$,
 \begin{equation}
@@ -549,5 +563,47 @@ $(x,I_d,0)$.不妨设存在常数$C$使得任意$n\geq 1,x\in \mathbb{R}^d$,
         &\leq (C+1)^2 \mathbb{E}[\abs{X}^2I_{\{\abs{X}\geq n\}}],
     \end{aligned}
 \end{equation}
-由于$X$二阶矩有限,所以当$n\to \infty$,$W_2(\mu\circ\rho_n^{-1},\mu)\to 0$.结合连续性可得
+由于$X$二阶矩有限,所以当$n\to \infty$,$W_2(\mu\circ\rho_n^{-1},\mu)\to 0$.结合连续性可得以下收敛在$\mathbb{P}-$a.s. 意义下成立:
+\begin{equation}
+    \begin{aligned}
+        &f^*\rho_n(\mu)\to mu,\\
+        &\partial_{\mu}(f^*\rho_n)(\mu)(X)\to \partial_{\mu}f(\mu)(X),\\
+        &\partial_{x}\partial_{\mu}(f^*\rho_n)(\mu)(X)\to \partial_{x}\partial_{\mu}f(\mu)(X).
+    \end{aligned}
+\end{equation}
+由于
+\[
+    \sup_{n\geq 1}\mathbb{E}[\abs{\partial_{\mu}(f^*\rho_n)(\mu)(X)}^2+\abs{\partial_{x}\partial_{\mu}(f^*\rho_n)(\mu)(X)}^2]<\infty,
+\]
+结合\citep{Boga}的定理4.5.9,可得$\{\partial_{\mu}(f^*\rho_n)(\mu)(X)\},\{\partial_{x}\partial_{\mu}(f^*\rho_n)(\mu)(X)\}$都是一致可积的,所以可以应用Vitalli收敛定理得到对任意$t\geq 0$和任意$s\in [0,t]$
+\begin{equation}
+    \begin{aligned}
+        &\lim_{n\to\infty} \mathbb{E}[\partial_{\mu}(f^*\rho_n)(\mu)(X)\cdot b_s]=\mathbb{E}[\partial_{\mu}f(\mu)(X)\cdot b_s],\\
+        &\lim_{n\to\infty} \mathbb{E}[\partial_{x}\partial_{\mu}(f^*\rho_n)(\mu)(X)\cdot a_s]=\mathbb{E}[\partial_{x}\partial_{\mu}f(\mu)(X)\cdot a_s].
+    \end{aligned}
+\end{equation}\par
+对每个$n$应用Ito公式,可得
+\begin{equation}
+    \begin{aligned}
+        &(f^*\rho_n)(\mu_t)-(f^*\rho_n)(\mu_0)\\
+    =&\int_{0}^{t }\mathbb{E}[\partial_{\mu}(f^*\rho_n)(\mu_s)(X_s)\cdot b_s]\mathrm{d}s+\frac{1}{2}\int_{0}^{t }\mathbb{E}[\partial_{x}\partial_{\mu}(f^*\rho_n)(\mu)(X_S)\cdot a_s]\mathrm{d}s\\
+    \overset{\triangle}{=}&\int_{0}^{t} g_n(s)\mathrm{d}s+\frac{1}{2}\int_{0}^{t}h_n(s)\mathrm{d}s,
+    \end{aligned}
+\end{equation}
+其中左边收敛到$f(\mu_t)-f(\mu_0)$,右边则有被积函数$(g_n(s),h_n(s))$逐点收敛到$(g(s),h(s))=(\mathbb{E}[\partial_{\mu}f(\mu_s)(X_s)\cdot b_s],\mathbb{E}[\partial_{x}\partial_{\mu}f(\mu_s)(X_s)\cdot a_s])$,
+下面只需说明$\{g_n\},\{h_n\}$是一致可积的.事实上,由$\{b_s\},\{\sigma_s\}$的矩条件可知映射$s\mapsto \mu_s$是连续的,所以
+$\{\mu_s\}_{0\leq s\leq t}$作为紧集$[0,t]$的连续映射下的像仍是紧的,所以
+\[
+\sup_{n\geq 1} \sup_{s\in[0,t]} (\abs{h_n(s)}^2+\abs{g_n(x)}^2)<\infty,
+\]
+从而一致可积性成立,也就完成了证明.
+    
+
 \end{proof}
+
+在这一节的最后,要说明的是虽然完全$C^2$正则性假设中要求$\partial_{\mu}^2f(\mu)(x,y)$的存在性和连续性,但在Ito公式中并未出现这一项,实际上对于它的要求确实可以减弱,从而将完全$C^2$正则性假设的要求降低到
+部分$C^2$正则性((Partial $C^2$ Regularity)假设,同时其他设定不变,保持Ito公式仍然成立;此外,还可以将$f:\mathscr{P}_2\to \mathbb{R}$扩展到$f:[0,T]\times \mathbb{R}^d\times \mathscr{P}_2\to \mathbb{R}$,给出
+\[
+f(t,X_t,\mathscr{L}(X_t)-f(0,X_0,\mathscr{L}(X_0)))
+\]
+的联合Ito公式.具体可见\citep{MFG}的5.4.5节和5.5.5节相关内容
